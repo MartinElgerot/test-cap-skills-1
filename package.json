@@ -1,0 +1,32 @@
+{
+  "name": "sales-app",
+  "version": "1.0.0",
+  "description": "CAP Node.js application",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@sap/cds": ">=7",
+    "@sap/cds-dk": ">=7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*",
+    "@sap/cds-types": ">=7",
+    "chai": "^4",
+    "mocha": "^10",
+    "ts-node": "^10",
+    "typescript": "^5"
+  },
+  "scripts": {
+    "start":   "cds-serve",
+    "watch":   "cds watch",
+    "test":    "mocha --require ts-node/register test/**/*.test.ts --timeout 10000",
+    "compile": "tsc --noEmit",
+    "build":   "cds build --production",
+    "deploy":  "cf push"
+  },
+  "cds": {
+    "requires": {
+      "db": { "kind": "sqlite", "credentials": { "url": ":memory:" } }
+    }
+  }
+}
