@@ -103,12 +103,6 @@ Examples:
    // Add your entities here using /generate-entity
    ```
 
-   **`srv/services.cds`**
-
-   ```cds
-   // Add your services here using /generate-service
-   ```
-
    **`srv/annotations.cds`**
 
    ```cds
@@ -166,7 +160,6 @@ Examples:
 |`tsconfig.json`      |Create|
 |`.cdsrc.json`        |Create|
 |`db/schema.cds`      |Create|
-|`srv/services.cds`   |Create|
 |`srv/annotations.cds`|Create|
 |`.gitignore`         |Create|
 |`CLAUDE.md`          |Create|
