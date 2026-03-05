@@ -12,6 +12,11 @@ export default (srv: cds.ApplicationService) => {
   srv.before('CREATE', SalesOrders, async (req: cds.Request) => {
     log.info('CREATE SalesOrders — user:', req.user.id);
 
+    // customerName is required
+    if (!req.data.customerName) {
+      return req.error(400, 'customerName is required');
+    }
+
     // Set default status if not provided
     if (!req.data.status) {
       req.data.status = 'Open';
@@ -19,12 +24,7 @@ export default (srv: cds.ApplicationService) => {
 
     // Validate status value
     if (!VALID_STATUSES.includes(req.data.status)) {
-      req.error(400, `Invalid status '${req.data.status}'. Must be one of: ${VALID_STATUSES.join(', ')}`);
-    }
-
-    // customerName is required
-    if (!req.data.customerName) {
-      req.error(400, 'customerName is required');
+      return req.error(400, `Invalid status '${req.data.status}'. Must be one of: ${VALID_STATUSES.join(', ')}`);
     }
   });
 
@@ -34,7 +34,7 @@ export default (srv: cds.ApplicationService) => {
 
     // Validate status if being changed
     if (req.data.status && !VALID_STATUSES.includes(req.data.status)) {
-      req.error(400, `Invalid status '${req.data.status}'. Must be one of: ${VALID_STATUSES.join(', ')}`);
+      return req.error(400, `Invalid status '${req.data.status}'. Must be one of: ${VALID_STATUSES.join(', ')}`);
     }
   });
 

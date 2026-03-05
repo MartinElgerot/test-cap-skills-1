@@ -24,17 +24,3 @@ entity SalesOrders : managed, cuid {
   @title: 'Status'
   status       : String(100);
 }
-
-annotate SalesOrders with @(
-  UI.LineItem: [
-    { Value: customerName },
-    { Value: orderDate },
-    { Value: totalAmount },
-    { Value: status }
-  ],
-  UI.HeaderInfo: {
-    TypeName: 'Sales Order',
-    TypeNamePlural: 'Sales Orders',
-    Title: { Value: customerName }
-  }
-);
